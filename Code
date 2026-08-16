@@ -1,0 +1,71 @@
+#include <SoftwareSerial.h>
+SoftwareSerial BT(2, 3); // RX, TX (Bluetooth TX->2, RX->3)
+
+// Motor driver pins
+int ENA = 5;
+int INI = 6;
+int IN2 = 7;
+int IN3 = 8;
+int IN4 = 9;
+int ENB= 1O;
+
+char command;
+void setup() {
+pinM0de(ENA, OUTPUT);
+pinM0de(ENB, OUTPUT);
+pinMode(IN1 ,OUTPUT);
+pinMode(IN2, OUTPUT);
+pinM0de(IN3, OUTPUT);
+pinM0de(IN4, OUTPUT);
+
+;BT.begin(9600);
+Serial. begin(9600);
+Serial. println("Bluetooth Car Ready!");
+}
+
+void loop() {
+if (BT.available()) {
+command = BT.read();
+Serial.println(command);
+
+if (command == 'F'){//Foward
+digitalWrite(IN1 , HIGH);
+digitalWrite(IN2, LOW);
+digitalIWrite(IN3, HIGH);
+digitalWrite(IN4, LOW);
+analogWrite(ENA, 200);
+analogWrite(ENB, 200);
+}
+
+else if (command =='B'){// Backward
+digitalWrite(IN1 , LOW);
+digitalWrite(IN2, HIGH);
+digitalWrite(IN3, LOW);
+digitalWrite(IN4, HIGH);
+analogWrite(ENA, 200);
+analogWrite(ENB, 200);
+}
+
+else if (command =='L'){// Left
+digitalWrite(IN1 ,LOW);
+digitalWrite(IN2, HIGH);
+digitalWrite(IN3, HIGH);
+digitalWrite(IN4, LOW);
+}
+
+else if (command =='R') { // Right
+digitalWrite(IN1 ,HIGH);
+digitalWrite(IN2, LOW);
+digitalWrite(IN3, LOW);
+digitalWrite(IN4, HIGH);
+}
+
+else if (command =='S'){ // stop
+
+digitalWrite(IN1, LOW);
+digitalWrite(IN2, LOW);
+digitalWrite(IN3, LOW);
+digitalWrite(IN4, LOW);
+    }
+  }
+}
