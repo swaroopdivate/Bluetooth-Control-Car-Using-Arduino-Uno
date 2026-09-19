@@ -3,7 +3,7 @@ SoftwareSerial BT(2, 3); // RX, TX (Bluetooth TX->2, RX->3)
 
 // Motor driver pins
 int ENA = 5;
-int INI = 6;
+int IN1 = 6;
 int IN2 = 7;
 int IN3 = 8;
 int IN4 = 9;
